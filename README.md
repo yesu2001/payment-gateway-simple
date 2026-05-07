@@ -21,6 +21,14 @@ Open http://localhost:3000
 - AbortController: cancels fetch after 6s to handle gateway timeouts
 - crypto.randomUUID(): generates transaction ID once, reused on retries for idempotency
 
+## Assumptions
+
+- Card data is not persisted anywhere — only last 4 digits are sent to the API
+- Transaction history is stored in localStorage under the key 'payment-store'
+- Timeout is simulated at 6s on frontend, 8s on the mock server
+- Currency selector affects display only — no real conversion happens
+- Retry attempts are capped at 3 per transaction ID
+
 ## What I'd improve with more time
 
 - Add animations between payment states
