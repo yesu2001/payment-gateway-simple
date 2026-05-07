@@ -1,36 +1,29 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Payment Gateway UI
 
-## Getting Started
+A payment gateway UI built with Next.js (App Router), TypeScript, and Zustand.
 
-First, run the development server:
+## Setup
 
-```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Test card numbers
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Visa: 4242 4242 4242 4242
+- Mastercard: 5555 5555 5555 4444
+- Amex: 3714 496353 98431
 
-## Learn More
+## Tech decisions
 
-To learn more about Next.js, take a look at the following resources:
+- Zustand over Redux: simpler API, no boilerplate, works without a Provider
+- AbortController: cancels fetch after 6s to handle gateway timeouts
+- crypto.randomUUID(): generates transaction ID once, reused on retries for idempotency
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## What I'd improve with more time
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Add animations between payment states
+- Unit tests for validators and cardUtils
+- Better mobile layout for the card preview
+- Real card tokenisation instead of sending card data
